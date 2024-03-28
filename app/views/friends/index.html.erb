@@ -3,12 +3,35 @@
 <h1>My friends</h1>
 
 <div id="friends">
-  <% @friends.each do |friend| %>
-    <%= render friend %>
-    <p>
-      <%= link_to "Show this friend", friend %>
-    </p>
-  <% end %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Twitter</th>
+        <th>Phone</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @friends.each do |friend| %>
+        <tr>
+          <td><%= friend.first_name %></td>
+          <td><%= friend.last_name %></td>
+          <td><%= friend.email %></td>
+          <td><%= friend.twitter %></td>
+          <td><%= friend.phone %></td>
+          <td class = "cols-3">
+          <!-- Links to perform actions -->
+          <%= link_to "Show", friend%>
+          <%= link_to "Edit", edit_friend_path(friend)%>
+          <%= link_to 'Delete', friend_path(friend), method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 
 <%= link_to "New friend", new_friend_path %>
