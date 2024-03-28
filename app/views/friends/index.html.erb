@@ -4,8 +4,7 @@
   <table class="table">
     <thead>
       <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
+        <th>Name</th>
         <th>Email</th>
         <th>Twitter</th>
         <th>Phone</th>
@@ -17,17 +16,14 @@
       <% @friends.each do |friend| %>
         <% if friend.user == current_user%>
         <tr>
-          <td><%= friend.first_name %></td>
-          <td><%= friend.last_name %></td>
+          <td><%= link_to "#{friend.first_name} #{friend.last_name}", edit_friend_path(friend) %></td>
           <td><%= friend.email %></td>
           <td><%= friend.twitter %></td>
           <td><%= friend.phone %></td>
           <td><%= friend.user_id%></td>
           <td class = "cols-3">
           <!-- Links to perform actions -->
-          <%= link_to "Show", friend%>
-          <%= link_to "Edit", edit_friend_path(friend)%>
-          <%= link_to 'Delete', friend, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to 'Delete', friend, method: :delete, data: { confirm: 'Are you sure?' } , class:"btn-lg btn-danger"%>
           </td>
         </tr>
         <% end %>
