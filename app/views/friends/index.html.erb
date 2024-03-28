@@ -9,17 +9,20 @@
         <th>Email</th>
         <th>Twitter</th>
         <th>Phone</th>
+        <th>Created by User Id</th>
         <th>Actions</th>
       </tr>
     </thead>
     <tbody>
       <% @friends.each do |friend| %>
+        <% if friend.user == current_user%>
         <tr>
           <td><%= friend.first_name %></td>
           <td><%= friend.last_name %></td>
           <td><%= friend.email %></td>
           <td><%= friend.twitter %></td>
           <td><%= friend.phone %></td>
+          <td><%= friend.user_id%></td>
           <td class = "cols-3">
           <!-- Links to perform actions -->
           <%= link_to "Show", friend%>
@@ -27,6 +30,7 @@
           <%= link_to 'Delete', friend, method: :delete, data: { confirm: 'Are you sure?' } %>
           </td>
         </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>
